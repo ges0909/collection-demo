@@ -1,35 +1,46 @@
 package schrader.collection.test;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class CollectionTest {
 
-  /**
-   * Java 9: static factory methods for collections
-   */
+class CollectionTest {
 
-  @Test
-  public void listOf() {
-    var l = List.of(1, 2, 3);
-  }
+    @Nested
+    @DisplayName("Java 9: static factory methods for collections")
+    class Java9AddOns {
 
-  @Test
-  public void setOf() {
-    var s = Set.of(1, 2, 1);
-  }
+        @Test
+        void listOf() {
+            var l = List.of(1, 2, 3);
+        }
 
-  @Test
-  public void mapOf() {
-    var m = Map.of("foo", "bar");
-  }
+        @Test
+        void setOf() {
+            var s = Set.of(1, 2, 3);
+        }
 
-  @Test
-  public void mapOfEntries() {
-    var m2 = Map.ofEntries(Map.entry("foo", "bar"));
-  }
+        @Test
+        void mapOf() {
+            var m = Map.of(
+                    1, "one",
+                    2, "two",
+                    3, "three"
+            );
+        }
+
+        @Test
+        void mapOfEntries() {
+            var m = Map.ofEntries(
+                    Map.entry("1", "one"),
+                    Map.entry("2", "two"),
+                    Map.entry("3", "three")
+            );
+        }
+    }
 }
