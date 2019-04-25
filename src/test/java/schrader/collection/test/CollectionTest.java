@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @SuppressWarnings("unused")
 class CollectionTest {
@@ -28,7 +29,7 @@ class CollectionTest {
         }
 
         @Test
-        void mapOf() {
+        void immutableMapOf() {
             var m = Map.of(
                     1, "one",
                     2, "two",
@@ -37,12 +38,22 @@ class CollectionTest {
         }
 
         @Test
-        void mapOfEntries() {
+        void immutableMapOfEntries() {
             var m = Map.ofEntries(
                     Map.entry("1", "one"),
                     Map.entry("2", "two"),
                     Map.entry("3", "three")
             );
+            m.put("4", "four");
+        }
+
+        @Test
+        void immutableListOfThrowsUnsupportedOperationException() {
+            var l = List.of(1, 2, 3);
+            assertThatExceptionOfType(UnsupportedOperationException.class)
+                    .isThrownBy(() -> {
+                        l.add(4);
+                    });
         }
     }
 
