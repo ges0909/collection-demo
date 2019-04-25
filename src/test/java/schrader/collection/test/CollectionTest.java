@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SuppressWarnings("unused")
 class CollectionTest {
 
     @Nested
@@ -51,7 +52,7 @@ class CollectionTest {
 
         @Test
         void intersection() {
-            var s = new HashSet<Integer>(Arrays.asList(1, 2, 3)); // mutable
+            var s = new HashSet<>(Arrays.asList(1, 2, 3)); // mutable
             var s2 = Set.of(2, 3, 4); // immutable
             s.retainAll(s2);
             assertThat(s).containsExactly(2, 3);
@@ -59,7 +60,7 @@ class CollectionTest {
 
         @Test
         void union() {
-            var s = new HashSet<Integer>(Arrays.asList(1, 2, 3)); // mutable
+            var s = new HashSet<>(Arrays.asList(1, 2, 3)); // mutable
             var s2 = Set.of(2, 3, 4); // immutable
             s.addAll(s2);
             assertThat(s).containsExactly(1, 2, 3, 4);
@@ -67,7 +68,7 @@ class CollectionTest {
 
         @Test
         void difference() {
-            var s = new HashSet<Integer>(Arrays.asList(1, 2, 3)); // mutable
+            var s = new HashSet<>(Arrays.asList(1, 2, 3)); // mutable
             var s2 = Set.of(2, 3, 4); // immutable
             s.removeAll(s2);
             assertThat(s).containsExactly(1);
